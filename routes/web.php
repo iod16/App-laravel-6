@@ -1,9 +1,12 @@
 <?php
 
-Route::get('products', 'ProductController@index')->name('products.index');
+//Route::get('products', 'ProductController@index')->name('products.index');
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
-
+Route::resource('products','ProductController');
 
 
 
@@ -16,9 +19,7 @@ Route::get('products', 'ProductController@index')->name('products.index');
 
 
 /*
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/contato', function () {
     return view('site.contact');
