@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateProductRequest;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -33,14 +34,20 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateProductRequest $request)
     {
-        dd($request->file('photo')->store('products'));
-        //$request->file('photo')->store('products');
+        /* $request->validade([
+            
+        ]);
 
-/*         if($request->file('photo')->isValid()){
-            $request->file('photo')->store('products');
-        } */
+        dd('Ok');
+ */
+        if($request->file('photo')->isValid()){
+            
+            $nameFile = $request->name . '.' . $request->photo->extension();
+            dd($request->file('photo')->storeAs('products',$nameFile));
+            
+        }
     }
 
     /**
